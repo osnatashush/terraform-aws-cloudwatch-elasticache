@@ -1,17 +1,18 @@
 resource "aws_cloudwatch_metric_alarm" "high_cpu" {
-  count               = var.high_cpu_enabled ? 1 : 0
-  alarm_name          = "${var.cache_cluster_id}-high-cpu"
-  comparison_operator = "GreaterThanThreshold"
-  evaluation_periods  = 5
-  metric_name         = "CPUUtilization"
-  namespace           = "AWS/ElastiCache"
-  period              = 60
-  statistic           = "Average"
-  threshold           = var.high_cpu_threshold
-  alarm_description   = "Elasticache CPU utilization IN ${var.cache_cluster_id} is too high"
-  alarm_actions       = [var.aws_sns_topic_arn]
-  ok_actions          = [var.aws_sns_topic_arn]
-  datapoints_to_alarm = 5
+  count                     = var.high_cpu_enabled ? 1 : 0
+  alarm_name                = "${var.cache_cluster_id}-high-cpu"
+  comparison_operator       = "GreaterThanThreshold"
+  evaluation_periods        = 5
+  metric_name               = "CPUUtilization"
+  namespace                 = "AWS/ElastiCache"
+  period                    = 60
+  statistic                 = "Average"
+  threshold                 = var.high_cpu_threshold
+  alarm_description         = "Elasticache CPU utilization IN ${var.cache_cluster_id} is too high"
+  alarm_actions             = [var.aws_sns_topic_arn]
+  ok_actions                = [var.aws_sns_topic_arn]
+  datapoints_to_alarm       = 5
+  insufficient_data_actions = []
   dimensions = {
     CacheClusterId = var.cache_cluster_id
   }
@@ -22,27 +23,26 @@ resource "aws_cloudwatch_metric_alarm" "high_cpu" {
 
 }
 resource "aws_cloudwatch_metric_alarm" "high_connection" {
-  count               = var.high_connection_enabled ? 1 : 0
-  alarm_name          = "${var.cache_cluster_id}-status-check-failed"
-  comparison_operator = "LessThanThreshold"
-  evaluation_periods  = 10
-  datapoints_to_alarm = 10
-  metric_name         = "CurrConnections"
-  namespace           = "AWS/ElastiCache"
-  period              = 60
-  statistic           = "Average"
-  threshold           = (100 - var.high_connection_threshold) * 65000
-  alarm_description   = "Average connections IN ${var.cache_cluster_id} is too high"
-  alarm_actions       = [var.aws_sns_topic_arn]
-  ok_actions          = [var.aws_sns_topic_arn]
-
+  for_each                  = toset(local.cache_nodes_ids) * var.high_connection_enabled ? 1 : 0
+  alarm_name                = "${var.cache_cluster_id}-node-${each.value}-status-check-failed"
+  comparison_operator       = "LessThanThreshold"
+  evaluation_periods        = 10
+  datapoints_to_alarm       = 10
+  metric_name               = "CurrConnections"
+  namespace                 = "AWS/ElastiCache"
+  period                    = 60
+  statistic                 = "Average"
+  threshold                 = (100 - var.high_connection_threshold) * 65000
+  alarm_description         = "Average connections node ${each.value} in cluster ${var.cache_cluster_id} is too high"
+  alarm_actions             = [var.aws_sns_topic_arn]
+  ok_actions                = [var.aws_sns_topic_arn]
+  insufficient_data_actions = []
   dimensions = {
     CacheClusterId = var.cache_cluster_id
-    CacheNodeId    = var.cache_node_id
+    CacheNodeId    = each.value
   }
   tags = merge(var.tags, {
     "CacheClusterId" = var.cache_cluster_id,
-
     "Terraform" = "true"
   })
 
@@ -61,6 +61,7 @@ resource "aws_cloudwatch_metric_alarm" "high_memory" {
   alarm_description   = "Average memory IN ${var.cache_cluster_id} is too high"
   alarm_actions       = [var.aws_sns_topic_arn]
   ok_actions          = [var.aws_sns_topic_arn]
+  insufficient_data_actions = []
 
   dimensions = {
     CacheClusterId = var.cache_cluster_id
@@ -84,6 +85,7 @@ resource "aws_cloudwatch_metric_alarm" "high_engine_cpu" {
   threshold           = var.high_engine_cpu_threshold
   alarm_actions       = [var.aws_sns_topic_arn]
   ok_actions          = [var.aws_sns_topic_arn]
+  insufficient_data_actions = []
   dimensions = {
     CacheClusterId = var.cache_cluster_id
   }
@@ -107,6 +109,7 @@ resource "aws_cloudwatch_metric_alarm" "high_replication_lag" {
   threshold           = var.high_replication_lag_threshold
   alarm_actions       = [var.aws_sns_topic_arn]
   ok_actions          = [var.aws_sns_topic_arn]
+  insufficient_data_actions = []
   dimensions = {
     CacheClusterId = var.cache_cluster_id
   }

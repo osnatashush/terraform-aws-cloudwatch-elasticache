@@ -80,8 +80,4 @@ variable "high_replication_lag_threshold" {
   default     = 60
   
 }
-variable "cache_node_id" {
-  description = "The ID of the cache node to monitor."
-  type        = string
-  
-}
+

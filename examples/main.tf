@@ -2,27 +2,27 @@ provider "aws" {
   region = "eu-west-1"
 }
 
-resource "aws_sns_topic" "opsgenie_topic" {
-  name         = "opsgenie"
-  display_name = "opsgenie"
+resource "aws_sns_topic" "sns_topic" {
+  name         = "sns"
+  display_name = "sns"
 }
 
-resource "aws_sns_topic_subscription" "opsgenie_subscription" {
+resource "aws_sns_topic_subscription" "sns_subscription" {
   confirmation_timeout_in_minutes = 1
   endpoint_auto_confirms          = false
-  topic_arn                       = aws_sns_topic.opsgenie_topic.arn
+  topic_arn                       = aws_sns_topic.sns_topic.arn
   protocol                        = "https"
-  endpoint                        = "https://api.opsgenie.com/v1/xxx"
-  depends_on                      = [aws_sns_topic.opsgenie_topic]
+  endpoint                        = "https://api.sns.com/v1/xxx"
+  depends_on                      = [aws_sns_topic.sns_topic]
 }
 
-module "i-023de0ca96508cbde-alarms" {
-  source            = "../"
-  cache_cluster_id  = "i-023de0ca96508cbde"
-  cache_node_id     = "0001"
-  aws_sns_topic_arn = aws_sns_topic.opsgenie_topic.arn
-  depends_on        = [aws_sns_topic.opsgenie_topic]
+module "elasticache-alarms" {
+  source = "delivops/elasticache-alarms/aws"
+  #version            = "0.0.1"
 
+  cache_cluster_id  = var.cache_cluster_id
+  aws_sns_topic_arn = aws_sns_topic.sns_topic.arn
+  depends_on        = [aws_sns_topic.sns_topic]
 }
 
 
