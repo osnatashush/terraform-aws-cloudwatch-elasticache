@@ -105,6 +105,7 @@ No modules.
 | [aws_cloudwatch_metric_alarm.high_engine_cpu](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_metric_alarm) | resource |
 | [aws_cloudwatch_metric_alarm.high_memory](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_metric_alarm) | resource |
 | [aws_cloudwatch_metric_alarm.high_replication_lag](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_metric_alarm) | resource |
+| [aws_elasticache_cluster.elasticache_cluster](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/elasticache_cluster) | data source |
 
 ## Inputs
 
@@ -112,7 +113,6 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_aws_sns_topic_arn"></a> [aws\_sns\_topic\_arn](#input\_aws\_sns\_topic\_arn) | The ARN of the SNS topic to send CloudWatch alarms to. | `string` | n/a | yes |
 | <a name="input_cache_cluster_id"></a> [cache\_cluster\_id](#input\_cache\_cluster\_id) | The ID of the cache cluster to monitor. | `string` | n/a | yes |
-| <a name="input_cache_node_id"></a> [cache\_node\_id](#input\_cache\_node\_id) | The ID of the cache node to monitor. | `string` | n/a | yes |
 | <a name="input_high_connection_enabled"></a> [high\_connection\_enabled](#input\_high\_connection\_enabled) | Enable high connection alarm | `bool` | `true` | no |
 | <a name="input_high_connection_threshold"></a> [high\_connection\_threshold](#input\_high\_connection\_threshold) | The threshold for high connection usage | `number` | `90` | no |
 | <a name="input_high_cpu_enabled"></a> [high\_cpu\_enabled](#input\_high\_cpu\_enabled) | Enable high CPU alarm | `bool` | `true` | no |
