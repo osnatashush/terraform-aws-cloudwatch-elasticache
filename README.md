@@ -40,7 +40,7 @@ resource "aws_sns_topic_subscription" "sns_subscription" {
 }
 
 module "elasticache-alarms" {
-  source = "delivops/elasticache-alarms/aws"
+  source = "delivops/cloudwatch-elasticache/aws"
   #version            = "0.0.1"
 
   cache_cluster_id  = var.cache_cluster_id
