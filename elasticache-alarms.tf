@@ -23,7 +23,7 @@ resource "aws_cloudwatch_metric_alarm" "high_cpu" {
 
 }
 resource "aws_cloudwatch_metric_alarm" "high_connection" {
-  for_each                  = var.high_connection_enabled ? toset(local.cache_nodes_ids) : {}
+  for_each                  = var.high_connection_enabled ? toset(local.cache_nodes_ids) : toset([])
   alarm_name                = "${var.cache_cluster_id}-node-${each.value}-status-check-failed"
   comparison_operator       = "LessThanThreshold"
   evaluation_periods        = 10
