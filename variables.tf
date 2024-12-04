@@ -25,7 +25,7 @@ variable "high_connection_enabled" {
 variable "high_connection_threshold" {
   description = "The threshold for high connection usage"
   type        = number
-  default     = 90
+  default     = 60
 
 }
 variable "high_memory_enabled" {
