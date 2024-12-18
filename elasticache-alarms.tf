@@ -10,9 +10,9 @@ resource "aws_cloudwatch_metric_alarm" "high_cpu" {
   statistic                 = "Average"
   threshold                 = var.high_cpu_threshold
   alarm_description         = "High CPU utilization in ${var.cache_cluster_id}"
-  alarm_actions             = concat(var.high_cpu_sns_topics_arns, var.global_sns_topics_arns)
-  ok_actions                = concat(var.high_cpu_sns_topics_arns, var.global_sns_topics_arns)
-  insufficient_data_actions = concat(var.high_cpu_sns_topics_arns, var.global_sns_topics_arns)
+  alarm_actions             = concat(var.high_cpu_sns_arns, var.all_alarms_sns_arns)
+  ok_actions                = concat(var.high_cpu_sns_arns, var.all_alarms_sns_arns)
+  insufficient_data_actions = concat(var.high_cpu_sns_arns, var.all_alarms_sns_arns)
   treat_missing_data        = "breaching"
   dimensions = {
     CacheClusterId = var.cache_cluster_id
@@ -35,9 +35,9 @@ resource "aws_cloudwatch_metric_alarm" "high_connection" {
   period                    = 300
   statistic                 = "Average"
   threshold                 = (var.high_connection_threshold / 100) * 65000
-  alarm_actions             = concat(var.high_connection_sns_topics_arns, var.global_sns_topics_arns)
-  ok_actions                = concat(var.high_connection_sns_topics_arns, var.global_sns_topics_arns)
-  insufficient_data_actions = concat(var.high_connection_sns_topics_arns, var.global_sns_topics_arns)
+  alarm_actions             = concat(var.high_connection_sns_arns, var.all_alarms_sns_arns)
+  ok_actions                = concat(var.high_connection_sns_arns, var.all_alarms_sns_arns)
+  insufficient_data_actions = concat(var.high_connection_sns_arns, var.all_alarms_sns_arns)
   treat_missing_data        = "breaching"
   dimensions = {
     CacheClusterId = var.cache_cluster_id
@@ -61,9 +61,9 @@ resource "aws_cloudwatch_metric_alarm" "high_memory" {
   period                    = 60
   statistic                 = "Average"
   threshold                 = var.high_memory_threshold
-  alarm_actions             = concat(var.high_memory_sns_topics_arns, var.global_sns_topics_arns)
-  ok_actions                = concat(var.high_memory_sns_topics_arns, var.global_sns_topics_arns)
-  insufficient_data_actions = concat(var.high_memory_sns_topics_arns, var.global_sns_topics_arns)
+  alarm_actions             = concat(var.high_memory_sns_arns, var.all_alarms_sns_arns)
+  ok_actions                = concat(var.high_memory_sns_arns, var.all_alarms_sns_arns)
+  insufficient_data_actions = concat(var.high_memory_sns_arns, var.all_alarms_sns_arns)
   treat_missing_data        = "breaching"
 
   dimensions = {
@@ -88,9 +88,9 @@ resource "aws_cloudwatch_metric_alarm" "high_engine_cpu" {
   period                    = 300
   statistic                 = "Maximum"
   threshold                 = var.high_engine_cpu_threshold
-  alarm_actions             = concat(var.high_engine_cpu_sns_topics_arns, var.global_sns_topics_arns)
-  ok_actions                = concat(var.high_engine_cpu_sns_topics_arns, var.global_sns_topics_arns)
-  insufficient_data_actions = concat(var.high_engine_cpu_sns_topics_arns, var.global_sns_topics_arns)
+  alarm_actions             = concat(var.high_engine_cpu_sns_arns, var.all_alarms_sns_arns)
+  ok_actions                = concat(var.high_engine_cpu_sns_arns, var.all_alarms_sns_arns)
+  insufficient_data_actions = concat(var.high_engine_cpu_sns_arns, var.all_alarms_sns_arns)
   treat_missing_data        = "breaching"
   dimensions = {
     CacheClusterId = var.cache_cluster_id
@@ -113,9 +113,9 @@ resource "aws_cloudwatch_metric_alarm" "high_replication_lag" {
   period                    = 300
   statistic                 = "Maximum"
   threshold                 = var.high_replication_lag_threshold
-  alarm_actions             = concat(var.high_replication_lag_sns_topics_arns, var.global_sns_topics_arns)
-  ok_actions                = concat(var.high_replication_lag_sns_topics_arns, var.global_sns_topics_arns)
-  insufficient_data_actions = concat(var.high_replication_lag_sns_topics_arns, var.global_sns_topics_arns)
+  alarm_actions             = concat(var.high_replication_lag_sns_arns, var.all_alarms_sns_arns)
+  ok_actions                = concat(var.high_replication_lag_sns_arns, var.all_alarms_sns_arns)
+  insufficient_data_actions = concat(var.high_replication_lag_sns_arns, var.all_alarms_sns_arns)
   treat_missing_data        = "breaching"
   dimensions = {
     CacheClusterId = var.cache_cluster_id

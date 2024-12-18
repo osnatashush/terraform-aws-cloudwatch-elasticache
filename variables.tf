@@ -10,7 +10,7 @@ variable "high_cpu_enabled" {
   default     = true
 
 }
-variable "high_cpu_sns_topics_arns" {
+variable "high_cpu_sns_arns" {
   description = "A list of SNS topics ARNs to send notifications to."
   type        = list(string)
   default     = []
@@ -22,7 +22,7 @@ variable "status_check_failed_enabled" {
   default     = true
 
 }
-variable "status_check_failed_sns_topics_arns" {
+variable "status_check_failed_sns_arns" {
   description = "A list of SNS topics ARNs to send notifications to."
   type        = list(string)
   default     = []
@@ -40,7 +40,7 @@ variable "high_connection_threshold" {
   default     = 60
 
 }
-variable "high_connection_sns_topics_arns" {
+variable "high_connection_sns_arns" {
   description = "A list of SNS topics ARNs to send notifications to."
   type        = list(string)
   default     = []
@@ -58,7 +58,7 @@ variable "high_memory_threshold" {
   default     = 90
 
 }
-variable "high_memory_sns_topics_arns" {
+variable "high_memory_sns_arns" {
   description = "A list of SNS topics ARNs to send notifications to."
   type        = list(string)
   default     = []
@@ -76,7 +76,7 @@ variable "high_engine_cpu_threshold" {
   default     = 90
 
 }
-variable "high_engine_cpu_sns_topics_arns" {
+variable "high_engine_cpu_sns_arns" {
   description = "A list of SNS topics ARNs to send notifications to."
   type        = list(string)
   default     = []
@@ -88,7 +88,7 @@ variable "cache_cluster_id" {
 
 }
 
-variable "global_sns_topics_arns" {
+variable "all_alarms_sns_arns" {
   description = "A list of SNS topics ARNs to send notifications to."
   type        = list(string)
   default     = []
@@ -111,7 +111,7 @@ variable "high_replication_lag_threshold" {
   default     = 60
 
 }
-variable "high_replication_lag_sns_topics_arns" {
+variable "high_replication_lag_sns_arns" {
   description = "A list of SNS topics ARNs to send notifications to."
   type        = list(string)
   default     = []

@@ -44,7 +44,7 @@ module "elasticache-alarms" {
   #version            = "0.0.1"
 
   cache_cluster_id  = var.cache_cluster_id
-  global_sns_topic_arn = aws_sns_topic.sns_topic.arn
+  all_alarms_sns_arns = aws_sns_topic.sns_topic.arn
   depends_on        = [aws_sns_topic.sns_topic]
 }
 
@@ -113,38 +113,39 @@ No modules.
 <<<<<<< Updated upstream
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_aws_sns_topic_arn"></a> [aws\_sns\_topic\_arn](#input\_aws\_sns\_topic\_arn) | The ARN of the SNS topic to send CloudWatch alarms to. | `string` | n/a | yes |
-| <a name="input_cache_cluster_id"></a> [cache\_cluster\_id](#input\_cache\_cluster\_id) | The ID of the cache cluster to monitor. | `string` | n/a | yes |
-| <a name="input_high_connection_enabled"></a> [high\_connection\_enabled](#input\_high\_connection\_enabled) | Enable high connection alarm | `bool` | `true` | no |
-| <a name="input_high_connection_threshold"></a> [high\_connection\_threshold](#input\_high\_connection\_threshold) | The threshold for high connection usage | `number` | `60` | no |
-| <a name="input_high_cpu_enabled"></a> [high\_cpu\_enabled](#input\_high\_cpu\_enabled) | Enable high CPU alarm | `bool` | `true` | no |
-| <a name="input_high_cpu_threshold"></a> [high\_cpu\_threshold](#input\_high\_cpu\_threshold) | The threshold for high CPU usage | `number` | `90` | no |
-| <a name="input_high_engine_cpu_enabled"></a> [high\_engine\_cpu\_enabled](#input\_high\_engine\_cpu\_enabled) | Enable high engine CPU alarm | `bool` | `true` | no |
-| <a name="input_high_engine_cpu_threshold"></a> [high\_engine\_cpu\_threshold](#input\_high\_engine\_cpu\_threshold) | The threshold for high engine CPU usage | `number` | `90` | no |
-| <a name="input_high_memory_enabled"></a> [high\_memory\_enabled](#input\_high\_memory\_enabled) | Enable high memory alarm | `bool` | `true` | no |
-| <a name="input_high_memory_threshold"></a> [high\_memory\_threshold](#input\_high\_memory\_threshold) | The threshold for high memory usage | `number` | `90` | no |
-| <a name="input_high_replication_lag_enabled"></a> [high\_replication\_lag\_enabled](#input\_high\_replication\_lag\_enabled) | Enable high replication lag alarm | `bool` | `true` | no |
-| <a name="input_high_replication_lag_threshold"></a> [high\_replication\_lag\_threshold](#input\_high\_replication\_lag\_threshold) | The threshold for high replication lag | `number` | `60` | no |
-| <a name="input_status_check_failed_enabled"></a> [status\_check\_failed\_enabled](#input\_status\_check\_failed\_enabled) | Enable status check failed alarm | `bool` | `true` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to add to all resources. | `map(string)` | `{}` | no |
+| <a name="input_aws_sns_topic_arn"></a> [aws_sns_topic_arn](#input_aws_sns_topic_arn) | The ARN of the SNS topic to send CloudWatch alarms to. | `string` | n/a | yes |
+| <a name="input_cache_cluster_id"></a> [cache_cluster_id](#input_cache_cluster_id) | The ID of the cache cluster to monitor. | `string` | n/a | yes |
+| <a name="input_high_connection_enabled"></a> [high_connection_enabled](#input_high_connection_enabled) | Enable high connection alarm | `bool` | `true` | no |
+| <a name="input_high_connection_threshold"></a> [high_connection_threshold](#input_high_connection_threshold) | The threshold for high connection usage | `number` | `60` | no |
+| <a name="input_high_cpu_enabled"></a> [high_cpu_enabled](#input_high_cpu_enabled) | Enable high CPU alarm | `bool` | `true` | no |
+| <a name="input_high_cpu_threshold"></a> [high_cpu_threshold](#input_high_cpu_threshold) | The threshold for high CPU usage | `number` | `90` | no |
+| <a name="input_high_engine_cpu_enabled"></a> [high_engine_cpu_enabled](#input_high_engine_cpu_enabled) | Enable high engine CPU alarm | `bool` | `true` | no |
+| <a name="input_high_engine_cpu_threshold"></a> [high_engine_cpu_threshold](#input_high_engine_cpu_threshold) | The threshold for high engine CPU usage | `number` | `90` | no |
+| <a name="input_high_memory_enabled"></a> [high_memory_enabled](#input_high_memory_enabled) | Enable high memory alarm | `bool` | `true` | no |
+| <a name="input_high_memory_threshold"></a> [high_memory_threshold](#input_high_memory_threshold) | The threshold for high memory usage | `number` | `90` | no |
+| <a name="input_high_replication_lag_enabled"></a> [high_replication_lag_enabled](#input_high_replication_lag_enabled) | Enable high replication lag alarm | `bool` | `true` | no |
+| <a name="input_high_replication_lag_threshold"></a> [high_replication_lag_threshold](#input_high_replication_lag_threshold) | The threshold for high replication lag | `number` | `60` | no |
+| <a name="input_status_check_failed_enabled"></a> [status_check_failed_enabled](#input_status_check_failed_enabled) | Enable status check failed alarm | `bool` | `true` | no |
+| <a name="input_tags"></a> [tags](#input_tags) | A map of tags to add to all resources. | `map(string)` | `{}` | no |
 =======
-| Name                                                                                                                        | Description                                            | Type          | Default | Required |
+| Name | Description | Type | Default | Required |
 | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------- | ------- | :------: |
-| <a name="input_aws_sns_topic_arn"></a> [aws_sns_topic_arn](#input_aws_sns_topic_arn)                                        | The ARN of the SNS topic to send CloudWatch alarms to. | `string`      | n/a     |   yes    |
-| <a name="input_cache_cluster_id"></a> [cache_cluster_id](#input_cache_cluster_id)                                           | The ID of the cache cluster to monitor.                | `string`      | n/a     |   yes    |
-| <a name="input_high_connection_enabled"></a> [high_connection_enabled](#input_high_connection_enabled)                      | Enable high connection alarm                           | `bool`        | `true`  |    no    |
-| <a name="input_high_connection_threshold"></a> [high_connection_threshold](#input_high_connection_threshold)                | The threshold for high connection usage                | `number`      | `90`    |    no    |
-| <a name="input_high_cpu_enabled"></a> [high_cpu_enabled](#input_high_cpu_enabled)                                           | Enable high CPU alarm                                  | `bool`        | `true`  |    no    |
-| <a name="input_high_cpu_threshold"></a> [high_cpu_threshold](#input_high_cpu_threshold)                                     | The threshold for high CPU usage                       | `number`      | `90`    |    no    |
-| <a name="input_high_engine_cpu_enabled"></a> [high_engine_cpu_enabled](#input_high_engine_cpu_enabled)                      | Enable high engine CPU alarm                           | `bool`        | `true`  |    no    |
-| <a name="input_high_engine_cpu_threshold"></a> [high_engine_cpu_threshold](#input_high_engine_cpu_threshold)                | The threshold for high engine CPU usage                | `number`      | `90`    |    no    |
-| <a name="input_high_memory_enabled"></a> [high_memory_enabled](#input_high_memory_enabled)                                  | Enable high memory alarm                               | `bool`        | `true`  |    no    |
-| <a name="input_high_memory_threshold"></a> [high_memory_threshold](#input_high_memory_threshold)                            | The threshold for high memory usage                    | `number`      | `90`    |    no    |
-| <a name="input_high_replication_lag_enabled"></a> [high_replication_lag_enabled](#input_high_replication_lag_enabled)       | Enable high replication lag alarm                      | `bool`        | `true`  |    no    |
-| <a name="input_high_replication_lag_threshold"></a> [high_replication_lag_threshold](#input_high_replication_lag_threshold) | The threshold for high replication lag                 | `number`      | `60`    |    no    |
-| <a name="input_status_check_failed_enabled"></a> [status_check_failed_enabled](#input_status_check_failed_enabled)          | Enable status check failed alarm                       | `bool`        | `true`  |    no    |
-| <a name="input_tags"></a> [tags](#input_tags)                                                                               | A map of tags to add to all resources.                 | `map(string)` | `{}`    |    no    |
->>>>>>> Stashed changes
+| <a name="input_aws_sns_topic_arn"></a> [aws_sns_topic_arn](#input_aws_sns_topic_arn) | The ARN of the SNS topic to send CloudWatch alarms to. | `string` | n/a | yes |
+| <a name="input_cache_cluster_id"></a> [cache_cluster_id](#input_cache_cluster_id) | The ID of the cache cluster to monitor. | `string` | n/a | yes |
+| <a name="input_high_connection_enabled"></a> [high_connection_enabled](#input_high_connection_enabled) | Enable high connection alarm | `bool` | `true` | no |
+| <a name="input_high_connection_threshold"></a> [high_connection_threshold](#input_high_connection_threshold) | The threshold for high connection usage | `number` | `90` | no |
+| <a name="input_high_cpu_enabled"></a> [high_cpu_enabled](#input_high_cpu_enabled) | Enable high CPU alarm | `bool` | `true` | no |
+| <a name="input_high_cpu_threshold"></a> [high_cpu_threshold](#input_high_cpu_threshold) | The threshold for high CPU usage | `number` | `90` | no |
+| <a name="input_high_engine_cpu_enabled"></a> [high_engine_cpu_enabled](#input_high_engine_cpu_enabled) | Enable high engine CPU alarm | `bool` | `true` | no |
+| <a name="input_high_engine_cpu_threshold"></a> [high_engine_cpu_threshold](#input_high_engine_cpu_threshold) | The threshold for high engine CPU usage | `number` | `90` | no |
+| <a name="input_high_memory_enabled"></a> [high_memory_enabled](#input_high_memory_enabled) | Enable high memory alarm | `bool` | `true` | no |
+| <a name="input_high_memory_threshold"></a> [high_memory_threshold](#input_high_memory_threshold) | The threshold for high memory usage | `number` | `90` | no |
+| <a name="input_high_replication_lag_enabled"></a> [high_replication_lag_enabled](#input_high_replication_lag_enabled) | Enable high replication lag alarm | `bool` | `true` | no |
+| <a name="input_high_replication_lag_threshold"></a> [high_replication_lag_threshold](#input_high_replication_lag_threshold) | The threshold for high replication lag | `number` | `60` | no |
+| <a name="input_status_check_failed_enabled"></a> [status_check_failed_enabled](#input_status_check_failed_enabled) | Enable status check failed alarm | `bool` | `true` | no |
+| <a name="input_tags"></a> [tags](#input_tags) | A map of tags to add to all resources. | `map(string)` | `{}` | no |
+
+> > > > > > > Stashed changes
 
 ## Outputs
 
